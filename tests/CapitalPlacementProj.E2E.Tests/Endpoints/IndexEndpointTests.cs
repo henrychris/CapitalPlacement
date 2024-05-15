@@ -1,4 +1,3 @@
-using CapitalPlacementProj.Endpoints;
 using CapitalPlacementProj.Endpoints.Index;
 
 namespace CapitalPlacementProj.E2E.Tests.Endpoints;

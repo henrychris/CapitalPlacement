@@ -1,5 +1,3 @@
-using System.Net;
-using System.Net.Http.Json;
 using Microsoft.Net.Http.Headers;
 
 namespace CapitalPlacementProj.E2E.Tests.Extensions;
