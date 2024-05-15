@@ -1,4 +1,4 @@
-﻿using CapitalPlacementProj.Application.Features.CreateQuestionnaire.Dtos;
+﻿using CapitalPlacementProj.Domain.Dtos;
 using CapitalPlacementProj.Domain.Entities;
 
 namespace CapitalPlacementProj.Application.Features.CreateQuestionnaire
