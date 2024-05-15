@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CapitalPlacementProj.Application\CapitalPlacementProj.Application.csproj" />
+    <ProjectReference Include="..\..\src\CapitalPlacementProj.Common\CapitalPlacementProj.Common.csproj" />
+    <ProjectReference Include="..\..\src\CapitalPlacementProj.Domain\CapitalPlacementProj.Domain.csproj" />
+    <ProjectReference Include="..\..\src\CapitalPlacementProj.Infrastructure\CapitalPlacementProj.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\CapitalPlacementProj\CapitalPlacementProj.csproj" />
   </ItemGroup>
 
