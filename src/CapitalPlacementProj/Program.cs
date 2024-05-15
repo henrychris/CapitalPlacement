@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using CapitalPlacementProj.Common.Extensions;
 using CapitalPlacementProj.Common.Middleware;
 using CapitalPlacementProj.Configuration;
@@ -92,6 +93,7 @@ try
         options.Errors.StatusCode = StatusCodes.Status422UnprocessableEntity;
         options.Serializer.Options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
         options.Serializer.Options.ReadCommentHandling = JsonCommentHandling.Skip;
+        options.Serializer.Options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 
     if (app.Environment.IsDevelopment())
@@ -100,6 +102,7 @@ try
         app.UseSwaggerUi(x => x.ConfigureDefaults());
     }
 
+    // todo: add serilog http request logging
     await app.RunAsync();
 }
 catch (Exception ex)
