@@ -8,6 +8,6 @@ namespace CapitalPlacementProj.Application.Features.CreateQuestionnaire
         public string ProgramName { get; set; } = null!;
         public string ProgramDescription { get; set; } = null!;
         public PersonalInformation PersonalInfo { get; set; } = null!;
-        public List<QuestionObjectDto> Questions { get; set; } = null!;
+        public List<QuestionObjectDto> Questions { get; set; } = [];
     }
 }
