@@ -1,4 +1,4 @@
-namespace CapitalPlacementProj.Endpoints.IndexEndpoint;
+namespace CapitalPlacementProj.Endpoints.Index;
 
 public class IndexResponse
 {
