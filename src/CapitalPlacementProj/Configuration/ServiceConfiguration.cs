@@ -1,5 +1,7 @@
+using CapitalPlacementProj.Application.Interfaces;
 using CapitalPlacementProj.Application.Interfaces.Repositories;
 using CapitalPlacementProj.Infrastructure.Repositories;
+using CapitalPlacementProj.Infrastructure.Services;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -13,6 +15,8 @@ public static class ServiceConfiguration
     /// <param name="services"></param>
     public static void RegisterServices(this IServiceCollection services)
     {
+        services.AddScoped<IQuestionnaireService, QuestionnaireService>();
+
         services.AddScoped<IQuestionnaireRepository>(provider =>
         {
             var cosmosClient = provider.GetRequiredService<CosmosClient>();
