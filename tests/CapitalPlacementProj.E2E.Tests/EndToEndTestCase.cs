@@ -25,6 +25,11 @@ public abstract class EndToEndTestCase : IAsyncDisposable
         Client = Application.CreateClient();
     }
 
+    protected async Task InitialiseAsync()
+    {
+        await Client.PostAsync("/initialise", null);
+    }
+
     public async ValueTask DisposeAsync()
     {
         await Application.DisposeAsync();
