@@ -1,7 +1,7 @@
 ﻿using CapitalPlacementProj.Application.Features.AnswerQuestionnaire;
 using CapitalPlacementProj.Application.Interfaces;
 
-namespace CapitalPlacementProj.Endpoints.Questionnaire.AnswerQuestionnaire
+namespace CapitalPlacementProj.Endpoints.Questionnaire
 {
     public class AnswerQuestionnaireEndpoint(IQuestionnaireService questionnaireService)
         : Endpoint<AnswerQuestionnaireRequest>
