@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "8b233cfd-cb04-40c3-814f-99499fcc8a6b",
+		"name": "Cosmo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22039666",
+		"_collection_link": "https://www.postman.com/henrychris2003/workspace/public-projects/collection/22039666-8b233cfd-cb04-40c3-814f-99499fcc8a6b?action=share&source=collection_link&creator=22039666"
+	},
+	"item": [
+		{
+			"name": "create-questionnaire",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = pm.response.json();\r",
+							"console.log(body);\r",
+							"pm.collectionVariables.set(\"questionnaireId\", body.questionnaireId);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"programName\": \"Another Flipping Survey\",\n  \"programDescription\": \"Some words here\",\n  \"personalInfo\": {\n    \"firstName\": {\n      \"isMandatory\": true\n    },\n    \"lastName\": {\n      \"isMandatory\": true\n    },\n    \"email\": {\n      \"isMandatory\": true\n    },\n    \"phone\": {\n      \"isInternal\": false,\n      \"isHidden\": false\n    },\n    \"nationality\": {\n      \"isInternal\": false,\n      \"isHidden\": false\n    },\n    \"currentResidence\": {\n      \"isInternal\": false,\n      \"isHidden\": false\n    },\n    \"idNumber\": {\n      \"isInternal\": false,\n      \"isHidden\": false\n    },\n    \"dateOfBirth\": {\n      \"isInternal\": false,\n      \"isHidden\": false\n    },\n    \"gender\": {\n      \"isInternal\": false,\n      \"isHidden\": false\n    }\n  },\n  \"profileInfo\": {\n    \"isInternal\": false,\n    \"isHidden\": false\n  },\n  \"questions\": [\n    {\n      \"question\": \"How are you doing today?\",\n      //\"choices\": [\n      // \"string\"\n      // ],\n      //\"maximumChoices\": 0,\n      \"questionType\": \"Paragraph\"\n    },\n    {\n      \"question\": \"How old are you?\",\n      //\"choices\": [\n      // \"string\"\n      // ],\n      //\"maximumChoices\": 0,\n      \"questionType\": \"Number\"\n    },\n    {\n      \"question\": \"How many days end with 'y'?\",\n      \"questionType\": \"MultipleChoice\",\n      \"choices\": [\n        \"3\",\n        \"5\",\n        \"7\"\n      ],\n      \"maximumChoices\": 1\n    },\n    {\n      \"question\": \"When is your birthday?\",\n      \"questionType\": \"Date\"\n    },\n    {\n      \"question\": \"Which of these technologies do you know?\",\n      \"questionType\": \"Dropdown\",\n      \"choices\": [\n        \"C#\",\n        \"React\",\n        \"JS\"\n      ],\n      \"maximumChoices\": 3\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7030/questionnaire",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7030",
+					"path": [
+						"questionnaire"
+					]
+				},
+				"description": "Create a questionnaire.  \n  \nValid question types are: Paragraph, Number, Date, YesNo, DropDown & MultipleChoice. They are case sensitive."
+			},
+			"response": []
+		},
+		{
+			"name": "get-questionnaire",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7030/questionnaire/:questionnaireId",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7030",
+					"path": [
+						"questionnaire",
+						":questionnaireId"
+					],
+					"variable": [
+						{
+							"key": "questionnaireId",
+							"value": "{{questionnaireId}}"
+						}
+					]
+				},
+				"description": "Get a questionnaire using the questionnaire id."
+			},
+			"response": []
+		},
+		{
+			"name": "index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7030",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7030"
+				},
+				"description": "The index page. Say hello!"
+			},
+			"response": []
+		},
+		{
+			"name": "init-project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7030/initialise",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7030",
+					"path": [
+						"initialise"
+					]
+				},
+				"description": "Initialise the project.  \n  \nThis a necessary step to create the databases & containers."
+			},
+			"response": []
+		},
+		{
+			"name": "update-questionnaire-question",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"questionObjectDto\": {\n    \"question\": \"What is your last name?\",\n    \"questionType\": \"Paragraph\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7030/questionnaire/:questionnaireId/question/:questionId",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7030",
+					"path": [
+						"questionnaire",
+						":questionnaireId",
+						"question",
+						":questionId"
+					],
+					"variable": [
+						{
+							"key": "questionnaireId",
+							"value": "{{questionnaireId}}"
+						},
+						{
+							"key": "questionId",
+							"value": "b2266c26-8d80-44c7-b9aa-f374d10fc5d6"
+						}
+					]
+				},
+				"description": "Update a single question in a questionnaire. This requires both the questionnaireId and the questionId."
+			},
+			"response": []
+		},
+		{
+			"name": "answer-questionnaire",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Henry\",\n  \"lastName\": \"Ihenacho\",\n  \"email\": \"user@example.com\",\n  \"userId\": \"U-001200\",\n  //\"phone\": \"string\",\n  \"nationality\": \"Nigerian\",\n  \"currentResidence\": \"Lagos\",\n  \"idNumber\": \"001200\",\n  \"dateOfBirth\": \"2003-06-25T15:54:41.866Z\",\n  \"gender\": \"string\",\n  \"responses\": [\n    {\n      \"questionId\": \"b2266c26-8d80-44c7-b9aa-f374d10fc5d6\",\n      \"answer\": \"Ihenacho\"\n    },\n    {\n      \"questionId\": \"7127bf9d-6320-4efc-8dbc-f7b6b91ca1fd\",\n      \"answer\": \"20\"\n    },\n    {\n      \"questionId\": \"432f8803-2ded-4d58-8d85-2afcbaf53904\",\n      \"answer\": 3\n    },\n    {\n      \"questionId\": \"f061fd5a-e6ef-41a2-a32c-8587a4ac0487\",\n      \"answer\": \"2003-06-25T15:54:41\"\n    },\n    {\n      \"questionId\": \"a9beceeb-0143-4884-a4da-9c5b85e7c531\",\n      \"answer\": [\"C#\", \"React\"]\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7030/questionnaire/:questionnaireId/answer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7030",
+					"path": [
+						"questionnaire",
+						":questionnaireId",
+						"answer"
+					],
+					"variable": [
+						{
+							"key": "questionnaireId",
+							"value": "{{questionnaireId}}"
+						}
+					]
+				},
+				"description": "Send in an answer to a questionnaire.  \n  \nThe userId is required, but you can provide any values. Questionids provided must match questions in the questionnaire, else, the answers will not be registered."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "questionnaireId",
+			"value": "e0bf2b01-9c8a-460a-ae40-2288e5935121",
+			"type": "default"
+		}
+	]
+}
