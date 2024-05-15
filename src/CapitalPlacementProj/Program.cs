@@ -59,6 +59,7 @@ try
         opt.EnableJWTBearerAuth = false;
     });
 
+    // register azure cosmos client
     builder.Services.AddSingleton(provider =>
     {
         return new CosmosClient(
@@ -73,11 +74,12 @@ try
         );
     });
 
+    builder.Services.RegisterServices();
+
     var app = builder.Build();
 
     if (app.Environment.IsDevelopment())
     {
-        // app.UseDefaultExceptionHandler();
         app.UseMiddleware<ExceptionMiddleware>();
     }
 
