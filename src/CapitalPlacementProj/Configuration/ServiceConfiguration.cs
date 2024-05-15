@@ -23,6 +23,16 @@ public static class ServiceConfiguration
             return new QuestionnaireRepository(cosmosClient, "cosmic_works", "questionnaires");
         });
 
+        services.AddScoped<IQuestionnaireResponseRepository>(provider =>
+        {
+            var cosmosClient = provider.GetRequiredService<CosmosClient>();
+            return new QuestionnaireResponseRepository(
+                cosmosClient,
+                "cosmic_works",
+                "questionnaire_responses"
+            );
+        });
+
         // used for time manipulation and testing
         // we should use this instead of DateTime.Now
         services.AddSingleton(TimeProvider.System);
