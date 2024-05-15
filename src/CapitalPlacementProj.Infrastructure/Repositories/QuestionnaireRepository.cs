@@ -1,4 +1,5 @@
 ﻿using CapitalPlacementProj.Application.Interfaces.Repositories;
+﻿using System.Net;
 using CapitalPlacementProj.Application.Interfaces.Repositories;
 using CapitalPlacementProj.Domain.Entities;
 using Microsoft.Azure.Cosmos;
@@ -34,6 +35,18 @@ namespace CapitalPlacementProj.Infrastructure.Repositories
         public async Task<Questionnaire?> GetQuestionnaireAsync(string questionnaireId)
         {
             throw new NotImplementedException();
+            try
+            {
+                var response = await _container.ReadItemAsync<Questionnaire>(
+                    questionnaireId,
+                    new PartitionKey(questionnaireId)
+                );
+                return response.Resource;
+            }
+            catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+            {
+                return null;
+            }
         }
 
         public async Task UpdateQuestionnaireAsync(Questionnaire questionnaire)
