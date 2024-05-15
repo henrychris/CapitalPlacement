@@ -69,7 +69,7 @@ namespace CapitalPlacementProj.Infrastructure.Services
             return new GetQuestionnaireResponse
             {
                 Id = response.Id,
-                PersonalInfo = response.PersonalInformation,
+                PersonalInformation = response.PersonalInformation,
                 ProgramDescription = response.ProgramDescription,
                 ProgramName = response.ProgramName,
                 Questions = response
