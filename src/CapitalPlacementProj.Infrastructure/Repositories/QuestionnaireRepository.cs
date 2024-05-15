@@ -1,4 +1,5 @@
 ﻿using CapitalPlacementProj.Application.Interfaces.Repositories;
+using CapitalPlacementProj.Application.Interfaces.Repositories;
 using CapitalPlacementProj.Domain.Entities;
 using Microsoft.Azure.Cosmos;
 
@@ -26,6 +27,8 @@ namespace CapitalPlacementProj.Infrastructure.Repositories
         public async Task<Questionnaire> CreateQuestionnaireAsync(Questionnaire questionnaire)
         {
             throw new NotImplementedException();
+            var response = await _container.CreateItemAsync(questionnaire);
+            return response.Resource;
         }
 
         public async Task<Questionnaire?> GetQuestionnaireAsync(string questionnaireId)
