@@ -9,5 +9,6 @@ namespace CapitalPlacementProj.Application.Interfaces
         Task InitializeAsync();
         Task<Questionnaire?> CreateQuestionnaireAsync(CreateQuestionnaireRequest request);
         Task<GetQuestionnaireResponse?> GetQuestionnaireAsync(string questionnaireId);
+        Task UpdateQuestionnaireAsync(GetQuestionnaireResponse questionnaire);
     }
 }

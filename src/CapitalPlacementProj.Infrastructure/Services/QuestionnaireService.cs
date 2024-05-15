@@ -84,5 +84,28 @@ namespace CapitalPlacementProj.Infrastructure.Services
                     .ToList()
             };
         }
+
+        public async Task UpdateQuestionnaireAsync(GetQuestionnaireResponse questionnaire)
+        {
+            var updatedQuestionnaire = new Questionnaire
+            {
+                Id = questionnaire.Id,
+                PersonalInformation = questionnaire.PersonalInformation,
+                ProgramDescription = questionnaire.ProgramDescription,
+                ProgramName = questionnaire.ProgramName,
+                Questions = questionnaire
+                    .Questions.Select(q => new QuestionObject
+                    {
+                        Id = q.Id,
+                        Choices = q.Choices,
+                        MaximumChoices = q.MaximumChoices,
+                        Question = q.Question,
+                        QuestionType = ConvertToEnum(q.QuestionType)
+                    })
+                    .ToList()
+            };
+
+            await questionnaireRepository.UpdateQuestionnaireAsync(updatedQuestionnaire);
+        }
     }
 }
