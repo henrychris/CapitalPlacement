@@ -1,7 +1,7 @@
 using CapitalPlacementProj.Endpoints;
 using CapitalPlacementProj.Endpoints.IndexEndpoint;
 
-namespace CapitalPlacementProj.E2E.Tests;
+namespace CapitalPlacementProj.E2E.Tests.Endpoints;
 
 public class IndexEndpointTests : EndToEndTestCase
 {
