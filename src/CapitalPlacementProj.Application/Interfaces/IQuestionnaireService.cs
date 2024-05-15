@@ -1,4 +1,5 @@
 ﻿using CapitalPlacementProj.Application.Features.CreateQuestionnaire;
+using CapitalPlacementProj.Application.Features.GetQuestionnaire;
 using CapitalPlacementProj.Domain.Entities;
 
 namespace CapitalPlacementProj.Application.Interfaces
@@ -7,5 +8,6 @@ namespace CapitalPlacementProj.Application.Interfaces
     {
         Task InitializeAsync();
         Task<Questionnaire?> CreateQuestionnaireAsync(CreateQuestionnaireRequest request);
+        Task<GetQuestionnaireResponse?> GetQuestionnaireAsync(string questionnaireId);
     }
 }

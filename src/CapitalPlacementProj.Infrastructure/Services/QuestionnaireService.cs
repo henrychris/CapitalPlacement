@@ -1,6 +1,8 @@
 ﻿using CapitalPlacementProj.Application.Features.CreateQuestionnaire;
+using CapitalPlacementProj.Application.Features.GetQuestionnaire;
 using CapitalPlacementProj.Application.Interfaces;
 using CapitalPlacementProj.Application.Interfaces.Repositories;
+using CapitalPlacementProj.Domain.Dtos;
 using CapitalPlacementProj.Domain.Entities;
 using CapitalPlacementProj.Domain.Enums;
 using Microsoft.Extensions.Logging;
@@ -31,7 +33,7 @@ namespace CapitalPlacementProj.Infrastructure.Services
                 })
                 .ToList();
 
-            var survey = new Questionnaire
+            var questionnaire = new Questionnaire
             {
                 ProgramName = request.ProgramName,
                 ProgramDescription = request.ProgramDescription,
@@ -39,7 +41,7 @@ namespace CapitalPlacementProj.Infrastructure.Services
                 Questions = questionObjects
             };
 
-            return await questionnaireRepository.CreateQuestionnaireAsync(survey);
+            return await questionnaireRepository.CreateQuestionnaireAsync(questionnaire);
         }
 
         private static QuestionType ConvertToEnum(string questionType)
@@ -53,6 +55,33 @@ namespace CapitalPlacementProj.Infrastructure.Services
                 "Date" => QuestionType.Date,
                 "Number" => QuestionType.Number,
                 _ => throw new ArgumentException("Invalid question type")
+            };
+        }
+
+        public async Task<GetQuestionnaireResponse?> GetQuestionnaireAsync(string questionnaireId)
+        {
+            var response = await questionnaireRepository.GetQuestionnaireAsync(questionnaireId);
+            if (response == null)
+            {
+                return null;
+            }
+
+            return new GetQuestionnaireResponse
+            {
+                Id = response.Id,
+                PersonalInfo = response.PersonalInformation,
+                ProgramDescription = response.ProgramDescription,
+                ProgramName = response.ProgramName,
+                Questions = response
+                    .Questions.Select(q => new QuestionObjectResponseDto
+                    {
+                        Id = q.Id,
+                        Choices = q.Choices,
+                        MaximumChoices = q.MaximumChoices,
+                        Question = q.Question,
+                        QuestionType = q.QuestionType.ToFriendlyString()
+                    })
+                    .ToList()
             };
         }
     }
