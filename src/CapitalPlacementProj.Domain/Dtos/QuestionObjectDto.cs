@@ -1,4 +1,4 @@
-﻿namespace CapitalPlacementProj.Application.Features.CreateQuestionnaire.Dtos
+﻿namespace CapitalPlacementProj.Domain.Dtos
 {
     public class QuestionObjectDto
     {
