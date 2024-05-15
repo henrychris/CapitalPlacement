@@ -1,27 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <LangVersion>latestmajor</LangVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <LangVersion>latestmajor</LangVersion>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FastEndpoints" Version="5.25.0" />
-    <PackageReference Include="FastEndpoints.Generator" Version="5.25.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="FastEndpoints.Swagger" Version="5.25.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FastEndpoints" Version="5.25.0" />
+        <PackageReference Include="FastEndpoints.Generator" Version="5.25.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="FastEndpoints.Swagger" Version="5.25.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.39.1" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CapitalPlacementProj.Application\CapitalPlacementProj.Application.csproj" />
-    <ProjectReference Include="..\CapitalPlacementProj.Common\CapitalPlacementProj.Common.csproj" />
-    <ProjectReference Include="..\CapitalPlacementProj.Infrastructure\CapitalPlacementProj.Infrastructure.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\CapitalPlacementProj.Application\CapitalPlacementProj.Application.csproj" />
+        <ProjectReference Include="..\CapitalPlacementProj.Common\CapitalPlacementProj.Common.csproj" />
+        <ProjectReference Include="..\CapitalPlacementProj.Infrastructure\CapitalPlacementProj.Infrastructure.csproj" />
+    </ItemGroup>
 
 </Project>

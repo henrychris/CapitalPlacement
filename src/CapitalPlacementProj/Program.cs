@@ -1,32 +1,30 @@
 using System.Text.Json;
-
-using FastEndpoints.Swagger;
-
 using CapitalPlacementProj.Common.Extensions;
 using CapitalPlacementProj.Common.Middleware;
 using CapitalPlacementProj.Configuration;
-
+using FastEndpoints.Swagger;
+using Microsoft.Azure.Cosmos;
 using Serilog;
 using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration
-       .AddUserSecrets<Program>() // used to manage secrets during development
-       .AddEnvironmentVariables()
-       .AddJsonFile($"appsettings.{builder.Environment}.json", optional: true, reloadOnChange: true)
-       .Build();
+builder
+    .Configuration.AddUserSecrets<Program>() // used to manage secrets during development
+    .AddEnvironmentVariables()
+    .AddJsonFile($"appsettings.{builder.Environment}.json", optional: true, reloadOnChange: true)
+    .Build();
 
 var logger = new LoggerConfiguration()
-             .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-             .MinimumLevel.Override("Microsoft.AspNetCore.Hosting", LogEventLevel.Information)
-             .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
-             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-             .MinimumLevel.Override("System", LogEventLevel.Warning)
-             .WriteTo.Console(
-                 LogEventLevel.Verbose,
-                 "[{Timestamp:HH:mm:ss}] [{Level:u3}] {SourceContext}: {Message}{NewLine}{Exception}"
-             )
-             .CreateLogger();
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.AspNetCore.Hosting", LogEventLevel.Information)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .MinimumLevel.Override("System", LogEventLevel.Warning)
+    .WriteTo.Console(
+        LogEventLevel.Verbose,
+        "[{Timestamp:HH:mm:ss}] [{Level:u3}] {SourceContext}: {Message}{NewLine}{Exception}"
+    )
+    .CreateLogger();
 
 logger.Information("Starting up");
 
@@ -51,15 +49,28 @@ try
     builder.Services.AddAuthentication();
     builder.Services.AddAuthorization();
 
-    builder.Services.AddFastEndpoints(
-        opt =>
-        {
-            opt.Assemblies = [typeof(Program).Assembly];
-        });
+    builder.Services.AddFastEndpoints(opt =>
+    {
+        opt.Assemblies = [typeof(Program).Assembly];
+    });
 
     builder.Services.SwaggerDocument(opt =>
     {
         opt.EnableJWTBearerAuth = false;
+    });
+
+    builder.Services.AddSingleton(provider =>
+    {
+        return new CosmosClient(
+            builder.Configuration.GetConnectionString("CosmosDB"),
+            new CosmosClientOptions
+            {
+                SerializerOptions = new()
+                {
+                    PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+                }
+            }
+        );
     });
 
     var app = builder.Build();

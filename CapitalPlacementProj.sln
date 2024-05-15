@@ -11,13 +11,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{52D20100
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitalPlacementProj.E2E.Tests", "tests\CapitalPlacementProj.E2E.Tests\CapitalPlacementProj.E2E.Tests.csproj", "{45C0FF09-D9AA-44FA-86B1-3C90C27584A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalPlacementProj.Domain", "src\CapitalPlacementProj.Domain\CapitalPlacementProj.Domain.csproj", "{BF9D397A-7711-4FE1-8415-40E3B3F0FB80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitalPlacementProj.Domain", "src\CapitalPlacementProj.Domain\CapitalPlacementProj.Domain.csproj", "{BF9D397A-7711-4FE1-8415-40E3B3F0FB80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalPlacementProj.Infrastructure", "src\CapitalPlacementProj.Infrastructure\CapitalPlacementProj.Infrastructure.csproj", "{B145C67C-475C-47FD-A614-F949B56ED456}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitalPlacementProj.Infrastructure", "src\CapitalPlacementProj.Infrastructure\CapitalPlacementProj.Infrastructure.csproj", "{B145C67C-475C-47FD-A614-F949B56ED456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalPlacementProj.Application", "src\CapitalPlacementProj.Application\CapitalPlacementProj.Application.csproj", "{03734FE5-B1AA-4600-9B50-3DBE1683EE94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitalPlacementProj.Application", "src\CapitalPlacementProj.Application\CapitalPlacementProj.Application.csproj", "{03734FE5-B1AA-4600-9B50-3DBE1683EE94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapitalPlacementProj.Common", "src\CapitalPlacementProj.Common\CapitalPlacementProj.Common.csproj", "{9CC4E25E-EA4F-44D0-818D-4D475D1C675C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapitalPlacementProj.Common", "src\CapitalPlacementProj.Common\CapitalPlacementProj.Common.csproj", "{9CC4E25E-EA4F-44D0-818D-4D475D1C675C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4064BF5E-D0AD-41B6-9D70-66E3BCAA42B6}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
