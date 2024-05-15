@@ -1,4 +1,3 @@
-﻿using CapitalPlacementProj.Application.Interfaces.Repositories;
 ﻿using System.Net;
 using CapitalPlacementProj.Application.Interfaces.Repositories;
 using CapitalPlacementProj.Domain.Entities;
@@ -27,14 +26,12 @@ namespace CapitalPlacementProj.Infrastructure.Repositories
 
         public async Task<Questionnaire> CreateQuestionnaireAsync(Questionnaire questionnaire)
         {
-            throw new NotImplementedException();
             var response = await _container.CreateItemAsync(questionnaire);
             return response.Resource;
         }
 
         public async Task<Questionnaire?> GetQuestionnaireAsync(string questionnaireId)
         {
-            throw new NotImplementedException();
             try
             {
                 var response = await _container.ReadItemAsync<Questionnaire>(
@@ -51,7 +48,7 @@ namespace CapitalPlacementProj.Infrastructure.Repositories
 
         public async Task UpdateQuestionnaireAsync(Questionnaire questionnaire)
         {
-            throw new NotImplementedException();
+            await _container.UpsertItemAsync(questionnaire);
         }
     }
 }
